@@ -212,6 +212,7 @@ B <- matrix(1:12, 4, 3)
 r <- length(A[,1]) # 2
 c <-length(B[1,]) # 3
 i <- 1
+AB <- matrix(0, 2, 3)
 
 while (i <= r){
     store <- 0
@@ -257,8 +258,63 @@ abline(h=pi, lty=2)
 tail(approx, 1)
 
 
+# 7. Write an R program that takes a vector x and checks if x has any duplicate 
+# element. (Hint: Use more break. The loop pattern in Lecture 2 Homework 
+# Question 1 might be useful.)
 
+## Using a FOR loop
+x <- c(3, -7, 6, 3, 1, -17)
 
+answer <- FALSE
+
+for (i in 1:6){
+    for (j in 1:6){
+        if(x[i] == x[j] && j > i){
+            # print(c(x[i], x[j], "TRUE"))
+            answer <- TRUE
+        } 
+    }
+}
+answer
+
+# [1] TRUE
+
+## Using a WHILE loop
+
+x <- c(3, -7, 6, 93, 1, -7)
+n <- length(x)
+i <- 1
+answer <- FALSE
+
+while(i <= n){
+    for(j in 1:n){
+        if(x[i] == x[j] && j > i){
+            print(c(x[i], x[j], i))
+            answer <- TRUE
+            break
+        }
+    }
+    i <- i + 1
+}
+answer
+
+# 8. Write an R program to mimic the built-in R function unique()
+# which returns the set of distinct elements for a vector x.
+
+x <- c(3, -7, 6, 3, 1, -7)
+answer <- numeric()
+i <- 1
+
+while(i <= length(x)){
+    for(i in 1:length(x)){
+        if(!(x[i] %in% answer)){
+            answer <- c(answer, x[i])
+        }
+    }
+    i <- i + 1
+}
+
+answer
 
 
 
